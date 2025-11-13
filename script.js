@@ -191,148 +191,60 @@
             });
         });
 
-// Enhanced Intersection Observer for animations
-const animateOnScroll = () => {
-    const observers = [];
-    
-    // Main animation observer
-    const animationObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                
-                // Animate quick facts with stagger
-                if (entry.target.classList.contains('about-content')) {
-                    const factItems = entry.target.querySelectorAll('.fact-item');
-                    factItems.forEach((item, index) => {
-                        setTimeout(() => {
-                            item.classList.add('visible');
-                        }, index * 200);
-                    });
-                }
-                
-                // Animate timeline items with delay
-                if (entry.target.id === 'experience') {
-                    const timelineItems = document.querySelectorAll('.timeline-item');
-                    timelineItems.forEach((item, index) => {
-                        setTimeout(() => {
-                            item.classList.add('visible');
-                        }, index * 300);
-                    });
-                }
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    // Observe all animated elements
-    const animatedElements = document.querySelectorAll(
-        '.fade-in, .slide-in-left, .slide-in-right, .about-content, #experience'
-    );
-    
-    animatedElements.forEach(el => {
-        animationObserver.observe(el);
-    });
-
-    // Section title animation observer
-    const titleObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.section-title').forEach(title => {
-        titleObserver.observe(title);
-    });
-
-    return observers;
-};
-
-// Initialize animations when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    animateOnScroll();
-});
-
-// Re-initialize animations when page is fully loaded
-window.addEventListener('load', () => {
-    // Small delay to ensure everything is rendered
-    setTimeout(animateOnScroll, 100);
-});
 
 
-// Enhanced Experience Section Animation
+        // Modern Experience Section Animation Controller - Responsive Fixed
 const initExperienceAnimations = () => {
-    const timelineObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Animate timeline items with staggered delay
-                const timelineItems = document.querySelectorAll('.timeline-item');
-                
-                timelineItems.forEach((item, index) => {
-                    setTimeout(() => {
-                        item.classList.add('visible');
-                    }, index * 300 + 500); // Staggered delay
-                });
-            }
-        });
-    }, {
-        threshold: 0.2,
-        rootMargin: '0px 0px -100px 0px'
-    });
-
-    // Observe the experience section
-    const experienceSection = document.getElementById('experience');
-    if (experienceSection) {
-        timelineObserver.observe(experienceSection);
-    }
-
-    // Add hover effects dynamically
     const timelineItems = document.querySelectorAll('.timeline-item');
     
+    // Create intersection observer for timeline items
+    const experienceObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Stagger the animation for each item
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, index * 200);
+            }
+        });
+    }, {
+        threshold: 0.1, // Lower threshold for better mobile detection
+        rootMargin: '0px 0px -20px 0px' // Adjusted for mobile
+    });
+
+    // Observe each timeline item
     timelineItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            item.style.zIndex = '10';
-        });
-        
-        item.addEventListener('mouseleave', () => {
-            item.style.zIndex = '1';
-        });
+        experienceObserver.observe(item);
     });
 };
 
-// Initialize when DOM is loaded
+// Initialize when page loads
 document.addEventListener('DOMContentLoaded', initExperienceAnimations);
 
 // Re-initialize when page is fully loaded
 window.addEventListener('load', () => {
-    setTimeout(initExperienceAnimations, 100);
+    setTimeout(initExperienceAnimations, 500);
 });
 
-
-
-        
-
-// About Image Animation Only
-const initAboutImageAnimation = () => {
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, {
-        threshold: 0.3
-    });
-
-    const profileImage = document.querySelector('.profile-img');
-    if (profileImage) {
-        imageObserver.observe(profileImage);
-    }
+// Simple hover effects (disabled on touch devices)
+const isTouchDevice = () => {
+    return ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 };
 
-document.addEventListener('DOMContentLoaded', initAboutImageAnimation);
-window.addEventListener('load', initAboutImageAnimation);
+if (!isTouchDevice()) {
+    const addHoverEffects = () => {
+        const items = document.querySelectorAll('.timeline-item');
+        
+        items.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    };
+    
+    addHoverEffects();
+}
