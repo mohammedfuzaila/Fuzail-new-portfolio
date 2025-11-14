@@ -102,7 +102,9 @@
         // ============================================
         // SCROLL ANIMATIONS
         // ============================================
-        const animateElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+        const sectionAnimates = document.querySelectorAll('section:not(#experience)');
+        sectionAnimates.forEach(sec => sec.classList.add('section-animate'));
+        const animateElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .section-animate');
 
         const animateObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
