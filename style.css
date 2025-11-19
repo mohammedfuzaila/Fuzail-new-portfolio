@@ -117,7 +117,7 @@ section {
 }
 
 .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
 }
 
@@ -457,6 +457,10 @@ section {
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.5rem;
+   
+}
+.skill-name span i{
+    font-size: 30px;
 }
 
 .skill-bar {
@@ -783,14 +787,60 @@ section {
 }
 
 .info-icon:hover {
-       background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
     border: 2px solid var(--primary)
-
 }
+
+/* From Uiverse.io by gharsh11032000 */
+.button1 {
+    cursor: pointer;
+    position: relative;
+    padding: 10px 24px;
+    font-size: 18px;
+    color: var(--secondary);
+    border: 2px solid var(--primary);
+    border-radius: 34px;
+    background-color: transparent;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+    overflow: hidden;
+}
+
+.button1::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    border-radius: inherit;
+    scale: 0;
+    z-index: -1;
+   
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.button1:hover::before {
+    scale: 3;
+}
+
+.button1:hover {
+    color:whitesmoke;
+    scale: 1.1;
+    box-shadow: 0 0px 20px rgba(233, 191, 229, 0.4);
+}
+
+.button1:active {
+    scale: 1;
+}
+
+
+
 
 .social-links {
     display: flex;
@@ -811,7 +861,7 @@ section {
 }
 
 .social-link:hover {
-       background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
     transform: translateY(-3px);
 }
@@ -1722,4 +1772,3 @@ footer {
         transition: none;
     }
 }
-
