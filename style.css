@@ -94,7 +94,7 @@ section {
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     border-radius: 2px;
 }
 
@@ -216,6 +216,7 @@ section {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--primary);
+    
 }
 
 .nav-menu {
@@ -321,6 +322,24 @@ section {
     animation-delay: 2s;
 }
 
+.shape3 {
+    width: 230px;
+    height: 230px;
+    background: var(--primary);
+    top: 1085%;
+    left: 3%;
+    animation-delay: 0s;
+}
+
+.shape4 {
+    width: 200px;
+    height: 200px;
+    background: var(--secondary);
+    top: 1156%;
+    right: 4%;
+    animation-delay: 2s;
+}
+
 @keyframes float {
 
     0%,
@@ -371,7 +390,11 @@ section {
 }
 
 .tech-icon:hover {
-    color: var(--primary);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
     transform: translateY(-5px);
 }
 
@@ -447,6 +470,7 @@ section {
     align-items: center;
     gap: 0.5rem;
     color: var(--primary);
+    font-size: 25px;
 }
 
 .skill-item {
@@ -457,9 +481,10 @@ section {
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.5rem;
-   
+
 }
-.skill-name span i{
+
+.skill-name span i {
     font-size: 30px;
 }
 
@@ -820,7 +845,7 @@ section {
     border-radius: inherit;
     scale: 0;
     z-index: -1;
-   
+
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
 }
@@ -830,7 +855,7 @@ section {
 }
 
 .button1:hover {
-    color:whitesmoke;
+    color: whitesmoke;
     scale: 1.1;
     box-shadow: 0 0px 20px rgba(233, 191, 229, 0.4);
 }
@@ -920,7 +945,7 @@ footer {
 }
 
 #backToTop:hover {
-    background: var(--primary-dark);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     transform: translateY(-3px);
 }
 
