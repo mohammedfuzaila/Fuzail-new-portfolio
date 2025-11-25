@@ -23,6 +23,7 @@
     --card-bg: #ffffff;
     --border: #e0e0e0;
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --tagborder: black;
 }
 
 [data-theme="dark"] {
@@ -33,6 +34,8 @@
     --card-bg: #1e1e1e;
     --border: #333333;
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --tagborder: white;
+
 }
 
 * {
@@ -216,7 +219,7 @@ section {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--primary);
-    
+
 }
 
 .nav-menu {
@@ -412,6 +415,11 @@ section {
     max-width: 400px;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.profile-img:hover {
+    transform: translateY(-5px);
 }
 
 .about-text p {
@@ -567,11 +575,19 @@ section {
 }
 
 .tag {
-    background: var(--primary);
+    background: transparent;
     color: white;
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
     font-size: 0.8rem;
+    border: 2px solid transparent;
+    border-image: linear-gradient(90deg, var(--primary), var(--secondary)) 1;
+
+    transition: var(--transition)
+}
+
+.tag:hover {
+    transform: translateY(-5px);
 }
 
 .project-links {
@@ -652,6 +668,11 @@ section {
     height: 20px;
     background: var(--primary);
     border-radius: 50%;
+    transition: all 0.1s ease-in-out;
+}
+
+.timeline-item::before:hover {
+    transform: translateY(-5px);
 }
 
 .timeline-item:nth-child(odd)::before {
@@ -661,6 +682,15 @@ section {
 .timeline-item:nth-child(even)::before {
     left: -40px;
 }
+
+.timeline-item fade-in visible {
+    transition: all 0.1s ease-in-out;
+}
+
+.timeline-item fade-in visible:hover {
+    transform: translateY(-5px);
+}
+
 
 .timeline-year {
     background: var(--primary);
